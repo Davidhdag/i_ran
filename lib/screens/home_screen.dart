@@ -12,32 +12,37 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController? _scrollController;
     return Scaffold(
-      appBar: AppBar(title: Text('I ran')),
-      body: Column(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      appBar: AppBar(
+        title: const Text(
+          'I ran',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 200,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              controller: _scrollController,
-              itemCount: exerciseList.length,
-              itemBuilder: (ctx, index) {
-                return ExpansionPanelList(
-                  children: [
-                    ExpansionPanel(
-                      headerBuilder: (context, isOpen) {
-                        return ExerciseCard(exerciseList[index]);                        
-                      },
-                      // isExpanded: true,                      
-                      body: Text(exerciseList[index].title),                      
-                    ),
-                  ],
-                );
-              },
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 400,
+                width: 400,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollController,
+                  itemCount: exerciseList.length,
+                  itemBuilder: (ctx, index) {
+                    return ExerciseCard(exercise: exerciseList[index]);
+                  },
+                ),
+              ),
+            ],
           ),
         ],
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
       ),
     );
   }

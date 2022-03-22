@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:i_ran/models/exercise.dart';
+import '../models/exercise.dart';
 
-class ExerciseCard extends StatefulWidget {
+class ExerciseCard extends StatelessWidget {
+  const ExerciseCard({
+    Key? key,
+    required this.exercise,
+  }) : super(key: key);
 
   final Exercise exercise;
-  ExerciseCard(this.exercise);
-
-  @override
-  State<ExerciseCard> createState() => _ExerciseCardState();
-}
-
-class _ExerciseCardState extends State<ExerciseCard> {
-  bool isOpen = false;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          isOpen = !isOpen;
-        });
-      },
-      child: ListTile(
-        leading: Container(
-          child: widget.exercise.image,                                
-        ),        
-        title: Text(widget.exercise.title),
-        subtitle: Text(widget.exercise.type),
+    return ExpansionTile(
+      leading: Container(
+        width: 50,
+        child: exercise.image,
       ),
+      title: Text(exercise.title),
+      subtitle: Text(exercise.type),
+      children: [
+        ListTile(
+          leading:
+              Text(exercise.type),
+          // title: Text(exercise.type),
+          trailing: Text(exercise.date.toString()),
+        )
+      ],
+      trailing: SizedBox.shrink(),
     );
   }
 }

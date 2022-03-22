@@ -13,15 +13,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyApp extends State<MyApp> {
+  final ThemeData tema = ThemeData();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'I ran',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: tema.colorScheme
+            .copyWith(primary: Colors.red, secondary: Colors.yellow[100]),
+        fontFamily: 'Minecraft',
       ),
       home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
