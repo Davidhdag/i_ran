@@ -17,10 +17,10 @@ class Exercise {
 
 }
   Map<int, String> type = {
-    1: 'Run',
-    2: 'Walk',
-    3: 'Bodybuild',
-    4: 'Swim',
-    5: 'Bike',
-    6: 'Other',
+    0: 'Run',
+    1: 'Walk',
+    2: 'Bodybuild',
+    3: 'Swim',
+    4: 'Bike',
+    5: 'Other',
   };

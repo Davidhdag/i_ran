@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/exercise.dart';
+import 'package:intl/intl.dart';
 
 class ExerciseCard extends StatelessWidget {
   const ExerciseCard({
@@ -11,22 +12,26 @@ class ExerciseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      leading: Container(
-        width: 50,
-        child: exercise.image,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: ExpansionTile(
+        leading: Container(
+          width: 50,
+          child: exercise.image,
+        ),
+        title: Text(exercise.title),
+        subtitle: Text(exercise.type),
+        children: [
+          ListTile(
+            leading: Text(exercise.type),
+            // title: Text(exercise.type),
+            trailing: Text(
+              DateFormat('dd/MM/yyy hh:mm').format(exercise.date),
+            ),
+          )
+        ],
+        trailing: SizedBox.shrink(),
       ),
-      title: Text(exercise.title),
-      subtitle: Text(exercise.type),
-      children: [
-        ListTile(
-          leading:
-              Text(exercise.type),
-          // title: Text(exercise.type),
-          trailing: Text(exercise.date.toString()),
-        )
-      ],
-      trailing: SizedBox.shrink(),
     );
   }
 }

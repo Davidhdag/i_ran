@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:i_ran/components/exercise_card.dart';
 import 'package:i_ran/data/dummy_data.dart';
 import 'package:i_ran/models/exercise.dart';
+import 'package:i_ran/utils/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -12,13 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController? _scrollController;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
       appBar: AppBar(
         title: const Text(
-          'I ran',
-          style: TextStyle(
-            fontSize: 25,
-          ),
+          'I ran',          
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
@@ -28,9 +25,27 @@ class HomeScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                height: 400,
-                width: 400,
+              Stack(
+                children: [
+                  const SizedBox(
+                    height: 300,
+                    width: 300,
+                  ),
+                  Positioned(
+                    bottom: 150,
+                    right: 0,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(AppRoutes.FORM);
+                      },
+                      child: Text('Start Training'),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 300,
+                width: 300,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   controller: _scrollController,
